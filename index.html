@@ -180,10 +180,13 @@ input[type=range].slider:focus::-ms-fill-upper {
   </head>
 
   <body>
-<input id="slider" value="5" type="range" min="2" max="20" step="1"></input>
-<p id="numPresses"></p>
-<br>
-<button onclick="randomize()">Randomize!</button>
+<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
+<div id="controls">
+  <input class="slider" id="slider" value="10" type="range" min="2" max="20" step="1"></input>
+  <p id="numPresses"></p>
+  <br>
+  <button onclick="randomize()">Randomize!</button>
+</div>
 
 <div id="container">
   <div class="row">
