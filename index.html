@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
+    <style>
+      * {
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  background-color: #3498db;
+}
+
+#container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  background-color: #ffffff;
+  margin: 7px;
+  display: inline-block;
+  color: white;
+  border-radius: 7px;
+  border: none;
+  animation: show 0.3s;
+}
+
+#numPresses {
+  display: inline;
+  font-family: "Roboto";
+  color: #ffffff;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+  background-color: #ffffff;
+  font-family: "Roboto";
+}
+
+@keyframes show {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+    </style>
+  </head>
+
+  <body>
+<input id="slider" value="5" type="range" min="2" max="20" step="1"></input>
+<p id="numPresses"></p>
+<br>
+<button onclick="randomize()">Randomize!</button>
+
+<div id="container">
+  <div class="row">
+    <button class="tile"></button>
+    <button class="tile"></button>
+    <button class="tile"></button>
+  </div>
+  <div class="row">
+    <button class="tile"></button>
+    <button class="tile"></button>
+    <button class="tile"></button>
+  </div>
+  <div class="row">
+    <button class="tile"></button>
+    <button class="tile"></button>
+    <button class="tile"></button>
+  </div>
+  <div class="row">
+    <button class="tile"></button>
+    <button class="tile"></button>
+    <button class="tile"></button>
+  </div>
+  <div class="row">
+    <button class="tile"></button>
+    <button class="tile"></button>
+    <button class="tile"></button>
+  </div>
+</div>
+<script>
+  var tiles = document.getElementsByClassName("tile");
+for (var i=0; i<tiles.length; i++) {
+  var tile = tiles[i]
+  tile.onclick = function() {
+    var arr = Array.prototype.slice.call(tiles);
+    press(arr.indexOf(this))
+  };
+}
+
+function press(index,preventAnim,preventWin) {
+  dirx = [0,0,0,1,-1,-1,1,-1,1]
+  diry = [0,1,-1,0,0,-1,-1,1,1]
+  for (var i=0; i<dirx.length; i++) {
+    var tileX = (index % 3) + diry[i];
+    var tileY = Math.floor(index / 3) + dirx[i];
+    if (tileX >= 0 && tileX <= 2 && tileY >= 0 && tileY <= 4) {
+      var tile = tiles[(tileY * 3) + tileX]
+      var col = window.getComputedStyle(tile).getPropertyValue('background-color');
+      if (col == "rgb(0, 0, 0)") {
+        tile.style.backgroundColor = "#ffffff"
+      } else {
+        tile.style.backgroundColor = "#000000"
+      }
+      if (!preventAnim) {
+        var duration = 0.3;
+        var delay = 0.08;
+        TweenMax.to(tile, duration, {scaleY: 1.6, ease: Expo.easeOut});
+        TweenMax.to(tile, duration, {scaleX: 1.2, scaleY: 1, ease: Back.easeOut, easeParams: [3], delay: delay});
+        TweenMax.to(tile, duration * 1.25, {scaleX: 1, scaleY: 1, ease: Back.easeOut, easeParams: [6], delay: delay * 3 });
+      }
+    }
+  }
+  var won = true;
+  for (var i=0; i<tiles.length; i++) {
+    if (window.getComputedStyle(tiles[i]).getPropertyValue('background-color') == "rgb(0, 0, 0)") {
+      won = false;
+    }
+  }
+  if (won && !preventWin) {
+    alert("You won!")
+  }
+}
+
+window.setInterval(function() {
+  var numPresses = document.getElementById("slider").value;
+  document.getElementById("numPresses").innerHTML = numPresses;
+}, 50)
+
+function randomize(preventAnim) {
+  for (var i=0; i<tiles.length; i++) {
+    tiles[i].style.backgroundColor = "#ffffff";
+  }
+  for (var i=0; i<document.getElementById("slider").value; i++) {
+    press(Math.floor(Math.random() * Math.floor(15)),preventAnim,true);
+  }
+}
+
+randomize(true);
+
+/* for (var i=0; i<tiles.length; i++) {
+  var time = i * 0.05 + 0
+  tiles[i].style.animationDelay = time + "s";
+} */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </body>
+</html>
