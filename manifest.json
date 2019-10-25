@@ -4,5 +4,9 @@
   "start_url": "https://oskar-codes.github.io/tile-swap",
   "display": "standalone",
   "background_color": "#3498db",
+  "theme_color": "#3498db",
+  "categories": ["games"],
+  "lang": "en-US",
+  "orientation": "any",
   "description": "A little puzzle game with infinite replayability!"
 }
