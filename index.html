@@ -299,6 +299,8 @@ randomize(true);
   var time = i * 0.05 + 0
   tiles[i].style.animationDelay = time + "s";
 } */
+  
+  
   function share() {
     var text = 'Play Tile Swap!';
     if ('share' in navigator) {
@@ -312,6 +314,12 @@ randomize(true);
         location.href = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text + ' - ') + location.href
     }
 }
+</script>
+<script src="upup.min.js"></script>
+<script>
+  UpUp.start({
+      'content-url': 'index.html'
+    });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
