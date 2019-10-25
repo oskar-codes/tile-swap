@@ -1,0 +1,8 @@
+{
+  "name": "Tile Swap",
+  "short_name": "TS",
+  "start_url": "https://oskar-codes.github.io/tile-swap",
+  "display": "minimal-ui",
+  "background_color": "#3498db",
+  "description": "A little puzzle game with infinite replayability!"
+}
