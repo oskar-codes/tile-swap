@@ -2,7 +2,7 @@
   "name": "Tile Swap",
   "short_name": "Tile Swap",
   "start_url": "https://oskar-codes.github.io/tile-swap",
-  "display": "standalone",
+  "display": "minimal-ui",
   "background_color": "#3498db",
   "theme_color": "#3498db",
   "categories": ["games"],
