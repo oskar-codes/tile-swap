@@ -59,8 +59,8 @@ body {
   }
   #share {
     width: auto;
-    top: 5px;
     bottom: unset;
+    top: 5px;
   }
   #slider {
     width: 90%;
@@ -90,6 +90,12 @@ button {
   cursor: pointer;
 }
 
+#share {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+}
+      
 @keyframes show {
   from {
     transform: scale(0);
@@ -184,12 +190,6 @@ input[type=range].slider:focus::-ms-fill-lower {
 }
 input[type=range].slider:focus::-ms-fill-upper {
   background: #ffffff;
-}
-
-#share {
-  position: absolute;
-  left: 5px;
-  bottom: 5px;
 }
     </style>
   </head>
