@@ -181,11 +181,17 @@ input[type=range].slider:focus::-ms-fill-upper {
   background: #ffffff;
 }
 
+#share {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+}
     </style>
   </head>
 
   <body>
 <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
+<button id="share" onclick="share();">Share</button>
 <div id="controls">
   <input class="slider" id="slider" value="10" type="range" min="2" max="20" step="1"></input>
   <p id="numPresses"></p>
@@ -290,6 +296,19 @@ randomize(true);
   var time = i * 0.05 + 0
   tiles[i].style.animationDelay = time + "s";
 } */
+  function share() {
+    var text = 'Play Tile Swap!';
+    if ('share' in navigator) {
+        navigator.share({
+            title: document.title,
+            text: text,
+            url: location.href,
+        })
+    } else {
+        // Here we use the WhatsApp API as fallback; remember to encode your text for URI
+        location.href = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text + ' - ') + location.href
+    }
+}
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
