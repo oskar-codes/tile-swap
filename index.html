@@ -276,7 +276,9 @@ function press(index,preventAnim,preventWin) {
     }
   }
   if (won && !preventWin) {
-    alert("You won!")
+    window.setTimeout(function() {
+      alert("You won!")
+    },50);
   }
 }
 
