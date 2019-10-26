@@ -231,18 +231,21 @@ input[type=range].slider:focus::-ms-fill-upper {
   </div>
 </div>
 <script>
-  var tiles = document.getElementsByClassName("tile");
+var counter = 0;
+var tiles = document.getElementsByClassName("tile");
 for (var i=0; i<tiles.length; i++) {
   var tile = tiles[i]
   tile.ontouchstart = function(e) {
     e.preventDefault();
     var arr = Array.prototype.slice.call(tiles);
     press(arr.indexOf(this))
+    counter++
   };
   tile.onclick = function(e) {
     e.preventDefault();
     var arr = Array.prototype.slice.call(tiles);
     press(arr.indexOf(this))
+    counter++;
   };
 }
 
@@ -277,7 +280,8 @@ function press(index,preventAnim,preventWin) {
   }
   if (won && !preventWin) {
     window.setTimeout(function() {
-      alert("You won!")
+      alert("You won in "+ counter +" moves!")
+      counter = 0;
     },50);
   }
 }
@@ -294,6 +298,7 @@ function randomize(preventAnim) {
   for (var i=0; i<document.getElementById("slider").value; i++) {
     press(Math.floor(Math.random() * Math.floor(15)),preventAnim,true);
   }
+  counter = 0;
 }
 
 randomize(true);
