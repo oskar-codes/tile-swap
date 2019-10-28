@@ -103,6 +103,14 @@ button {
     transform: scale(1);
   }
 }
+      
+#byline {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: black;
+  font-family: "Roboto";
+}
 
 input[type=range].slider {
   -webkit-appearance: none;
@@ -230,6 +238,7 @@ input[type=range].slider:focus::-ms-fill-upper {
     <button class="tile"></button>
   </div>
 </div>
+<p id="byline">By Oskar Zanota</p>
 <script>
 var counter = 0;
 var tiles = document.getElementsByClassName("tile");
